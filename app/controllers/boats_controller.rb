@@ -7,4 +7,8 @@ class BoatsController < ApplicationController
       @boats = Boat.all
     end
   end
+
+  def show
+    @boat = Boat.find(params[:id])
+  end
 end
