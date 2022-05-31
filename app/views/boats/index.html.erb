@@ -1,3 +1,13 @@
+<div class="search-bar mb-5">
+  <%= form_tag boats_path, method: :get, class: "d-flex" do %>
+    <%= text_field_tag :query,
+      params[:query],
+      class: "form-control",
+      placeholder: "Search by Location"
+    %>
+    <%= submit_tag "Search", class: "btn btn-primary" %>
+  <% end %>
+</div>
 <div class="cards">
   <% @boats.each do |boat| %>
     <div class="card mx-auto rounded" style="width: 18rem;">
@@ -7,7 +17,7 @@
         <p class="card-text"><strong><%= boat.capacity %>
         </strong><%= boat.location %>
         <%= boat.color %> <strong><p>Owner: <%= boat.user.first_name %></p></strong>
-        <a href="#" class="btn btn-primary">Check Boat</a>
+        <a href="#" class="btn btn-primary">Check Boat</a> <!--This is to be linked to the booking page later>
       </div>
     </div>
   <% end %>
