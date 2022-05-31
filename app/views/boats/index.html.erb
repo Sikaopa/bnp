@@ -13,11 +13,11 @@
     <div class="card  rounded" style="width: 18rem;">
       <img src="<%= boat.image_url %>" class="card-img-top" alt="...">
       <div class="card-body">
-        <h5 class="card-title"><%= boat.make %></h5>
+        <h5 class="card-title"><%= link_to boat.make, boat_path(boat.id) %></h5>
         <p class="card-text"><strong><%= boat.capacity %>
         </strong><%= boat.location %>
-        <%= boat.color %> <strong><p>Owner: <%= boat.user.first_name %></p></strong>
-        <a href="#" class="btn btn-primary">Check Boat</a> <!--This is to be linked to the booking page later>
+        <%= boat.color %> <strong><p>Location: <%= boat.location %></p></strong>
+        <%= link_to "See it", boat_path(boat.id) %>
       </div>
     </div>
   <% end %>
