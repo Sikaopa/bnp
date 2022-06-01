@@ -10,8 +10,8 @@
 </div>
 <div class="cards">
   <% @boats.each do |boat| %>
-    <div class="card  rounded" style="width: 18rem;">
-      <img src="<%= boat.image_url %>" class="card-img-top" alt="...">
+    <div class="card mx-auto rounded" style="width: 18rem;">
+      <img src= "<%= boat.image_url %>" class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title"><%= link_to boat.make, boat_path(boat.id) %></h5>
         <p class="card-text"><strong><%= boat.capacity %>
