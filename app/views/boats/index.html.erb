@@ -1,24 +1,26 @@
-<div class="search-bar mb-5">
-  <%= form_tag boats_path, method: :get, class: "d-flex" do %>
-    <%= text_field_tag :query,
-      params[:query],
-      class: "form-control",
-      placeholder: "Search by Location"
-    %>
-    <%= submit_tag "Search", class: "btn btn-primary" %>
-  <% end %>
-</div>
-<div class="cards">
-  <% @boats.each do |boat| %>
-    <div class="card mx-auto rounded" style="width: 18rem;">
-      <img src= "<%= boat.image_url %>" class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title"><%= boat.make %></h5>
-        <p class="card-text"><strong><%= boat.capacity %>
-        </strong><%= boat.location %>
-        <%= boat.color %> <strong><p>Owner: <%= boat.user.first_name %></p></strong>
-        <a href="#" class="btn btn-primary">Check Boat</a>
+<div class="container">
+  <div class="search-bar mb-5 mx-auto">
+    <%= form_tag boats_path, method: :get, class: "d-flex" do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "Search by Location"
+      %>
+      <%= submit_tag "Search", class: "btn btn-dark" %>
+    <% end %>
+  </div>
+  <div class="cards">
+    <% @boats.each do |boat| %>
+      <div class="card  mx-auto rounded" style="width: 18rem;">
+        <img src= "<%= boat.image_url %>" class="card-img-top" alt="...">
+        <div class="card-body text-dark">
+          <h5 class="card-title"><strong>Make:</strong> <%= boat.make %></h5>
+          <p class="card-text"><strong><%= boat.capacity %>
+          </strong><%= boat.location %>
+          <%= boat.color %> <strong><p>Owner: <%= boat.user.first_name %></p></strong>
+          <a href="#" class="btn btn-dark">Check Boat</a>
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
 </div>

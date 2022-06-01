@@ -1,15 +1,23 @@
-<div class="card-product">
-  <img src="<%= @boat.image_url %>">
-  <div class="card-product-infos">
-  <div class="row justify-content-between">
-    <div class="col-12 col-lg-8">
-      <h2><%=@boat.make%></h2>
-      <p>The <%=@boat.make%> is a beautiful <strong><%=@boat.color%></strong> boat located in <strong><%=@boat.location%></strong></p>
-      <p>The daily rate for this boat is only <strong>$<%=@boat.daily_rate%> per day</strong></p>
-      <p>Product description with <strong>relevant info</strong> only.</p>
+<div class="container ">
+  <div class = "d-flex justify-content-between">
+    <div class = "picture">
+      <img src="<%= @boat.image_url %>">
     </div>
-    <div class="col-12 col-lg-4">
-    <a href="#" class="btn btn-primary">Book Now!</a>
-  </div>
+
+
+
+
+        <div class="card" style="width: 50rem;">
+          <div class="card-body">
+            <h5 class="card-title"><strong>Make: <%= @boat.make %></strong></h5>
+            <h6 class="card-subtitle my-3 "><strong>Color: <%= @boat.color %></strong></h6>
+            <h6 class="card-subtitle my-3 "><strong>Capacity: <%= @boat.capacity %></strong></h6>
+            <h6 class="card-subtitle my-3 "><strong>Rate: $<%= @boat.daily_rate %></strong></h6>
+            <p class="card-text">This boat is beautiful and good for all get away and parties</p>
+            <div class = "text-center d-grid gap-2 mt-5">
+              <a href="#" class="card-link btn btn-dark btn-lg">Book</a>
+            </div>
+          </div>
+        </div>
   </div>
 </div>

@@ -1,47 +1,47 @@
-
-<h1>My Dashboard</h1>
-<div class="name mb-5">
-  <h1>Hey there <%= current_user.first_name %> !</h1>
-  <hr>
-</div>
-<div class="bookings mb-2">
-  <div class="title mb-4">
-    <h4>Your bookings</h4>
+<div class="container">
+  <h1>My Dashboard</h1>
+  <div class="name mb-5">
+    <h1>Hey there <%= current_user.first_name %> !</h1>
+    <hr>
   </div>
-  <% if current_user.bookings.count >= 1 %>
-    <ul class="list-unstyled">
-      <%current_user.bookings.each do |booking| %>
-      <li><%= link_to booking.boat.make, boat_path(booking) %></li>
-      <li><%= booking.boat.location %></li>
-      <li><%= booking.start_date %></li>
-      <li><%= booking.end_date %></li>
-      <%= link_to "Accept", "#", class: "btn btn-success" %>
-      <%= link_to "Decline", "#", class: "btn btn-danger" %>
-      <hr>
-      <% end %>
-    </ul>
-  <% else %>
-    <p>Nothing yet...</p>
+  <div class="bookings mb-2">
+    <div class="title mb-4">
+      <h4>Your bookings</h4>
+    </div>
+    <% if current_user.bookings.count >= 1 %>
+      <ul class="list-unstyled">
+        <%current_user.bookings.each do |booking| %>
+        <li><%= link_to booking.boat.make, boat_path(booking) %></li>
+        <li><%= booking.boat.location %></li>
+        <li><%= booking.start_date %></li>
+        <li><%= booking.end_date %></li>
+        <%= link_to "Accept", "#", class: "btn btn-success" %>
+        <%= link_to "Decline", "#", class: "btn btn-danger" %>
+        <hr>
+        <% end %>
+      </ul>
+    <% else %>
+      <p>Nothing yet...</p>
+    <% end %>
+  </div>
+  <br>
+  <br>
+  <br>
+  <% if current_user.boats.count >= 1 %>
+    <div class="boats mb-2">
+      <div class="title mb-4">
+        <h4>Your Boats</h4>
+      </div>
+      <ul class="list-unstyled">
+        <%current_user.boats.each do |boat| %>
+        <li><%= link_to boat.make, boat_path(boat) %></li>
+        <li><%= boat.capacity %></li>
+        <li><%= boat.color %></li>
+        <li><%= boat.location %></li>
+        <li><%= boat.daily_rate %></li>
+        <hr>
+        <% end %>
+      </ul>
+    </div>
   <% end %>
 </div>
-<br>
-<br>
-<br>
-<% if current_user.boats.count >= 1 %>
-  <div class="boats mb-2">
-    <div class="title mb-4">
-      <h4>Your Boats</h4>
-    </div>
-    <ul class="list-unstyled">
-      <%current_user.boats.each do |boat| %>
-      <li><%= link_to boat.make, boat_path(boat) %></li>
-      <li><%= boat.capacity %></li>
-      <li><%= boat.color %></li>
-      <li><%= boat.location %></li>
-      <li><%= boat.daily_rate %></li>
-      <hr>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
