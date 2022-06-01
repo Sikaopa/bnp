@@ -16,10 +16,6 @@ class BoatsController < ApplicationController
     @boat = Boat.new
   end
 
-  def show
-    @boat = Boat.find(params[:id])
-  end
-
   def create
     @boat = Boat.new(boat_params)
     @boat.user_id = current_user.id
