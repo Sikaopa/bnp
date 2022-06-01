@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users
   root to: "pages#home"
 
+
   resources :boats, only: [:index,:show] do
     resources :bookings, only:[:new,:create]
   end
