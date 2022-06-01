@@ -1,65 +1,71 @@
 <div class="container">
-  <h1>My Dashboard</h1>
   <div class="name mb-5">
-    <h1>Hey there <%= current_user.first_name %> !</h1>
+    <h1><%= current_user.first_name %>'s Dashboard</h1>
+    <hr>
+  </div>
+
+  <div class="title mb-4">
+    <h4>Your bookings</h4>
     <hr>
   </div>
 
   <% current_user.bookings.each_with_index do |booking, index| %>
-  <% if current_user.bookings[index].user == current_user %>
-    <ul class="list-unstyled">
-      <li><%= link_to current_user.bookings[index].boat.make, boat_path(booking) %></li>
-      <li><%= current_user.bookings[index].boat.location %></li>
-      <li><%= current_user.bookings[index].start_date %></li>
-      <li><%= current_user.bookings[index].end_date %></li>
-      <li><%= current_user.bookings[index].approved ? "Booking confirmed!" : "Pending..." %></li>
-      <hr>
-    </ul>
-  <% else %>
-    <p>Nothing yet...</p>
-  <% end %>
-<% end %>
+    <% if current_user.bookings[index].user == current_user %>
+      <ul class="list-unstyled">
+        <li><%= link_to current_user.bookings[index].boat.make, boat_path(booking) %></li>
+        <li><%= current_user.bookings[index].boat.location %></li>
+        <li><%= current_user.bookings[index].start_date %></li>
+        <li><%= current_user.bookings[index].end_date %></li>
+        <li><%= current_user.bookings[index].approved ? "Booking confirmed!" : "Pending..." %></li>
+        <hr>
+      </ul>
+    <%end%>
+  <%end%>
 
-</div>
-<br>
-<br>
-<br>
-<% if current_user.boats.count >= 1 %>
-  <div class="boats mb-2">
+  <br>
+  <br>
+  <br>
+  <% if current_user.boats.count >= 1 %>
+    <div class="boats mb-2">
+    <div class="title mb-4">
+        <h4>Your Boats</h4>
+        <hr>
+    </div>
+      <ul class="list-unstyled">
+        <%current_user.boats.each do |boat| %>
+        <li><%= link_to boat.make, boat_path(boat) %></li>
+        <li><%= boat.capacity %></li>
+        <li><%= boat.color %></li>
+        <li><%= boat.location %></li>
+        <li><%= boat.daily_rate %></li>
+        <hr>
+        <% end %>
+      </ul>
+    </div>
+    <%end%>
 
     <div class="title mb-4">
-      <h4>Your bookings</h4>
+      <h4>Approved bookings</h4>
     </div>
     <% if current_user.bookings.count >= 1 %>
       <ul class="list-unstyled">
         <%current_user.bookings.each do |booking| %>
+        <% if booking.approved%>
         <li><%= link_to booking.boat.make, boat_path(booking) %></li>
         <li><%= booking.boat.location %></li>
         <li><%= booking.start_date %></li>
         <li><%= booking.end_date %></li>
-        <%= link_to "Accept", "#", class: "btn btn-success" %>
-        <%= link_to "Decline", "#", class: "btn btn-danger" %>
+        <%end%>
         <hr>
         <% end %>
       </ul>
     <% else %>
       <p>Nothing yet...</p>
     <% end %>
+
+  <div class="title mb-4">
+    <h4>Pending bookings</h4>
   </div>
-<% end %>
-
-
-
-
-
-
-
-
-
-
-<div class="title mb-4">
-  <h4>Pending bookings</h4>
-</div>
 
   <% current_user.boats.each_with_index do |boat, index| %>
     <% if current_user.boats[index].bookings.count >= 1 %>
@@ -70,11 +76,15 @@
           <li><%= booking.boat.location %></li>
           <li><%= booking.start_date %></li>
           <li><%= booking.end_date %></li>
-          <%= link_to "Accept", booking_path(booking, approved: true), data:{ turbo_method: :patch }, class: "btn btn-success" %>
-          <%= link_to "Decline", delete_booking_path(booking), class: "btn btn-danger" %>
+          <%= link_to "Accept", boat_booking_path(booking, approved: true), data:{ turbo_method: :patch }, class: "btn btn-success" %>
+          <%= link_to "Decline", boat_delete_booking_path(booking), class: "btn btn-danger" %>
           <hr>
         <% end %>
         <% end %>
       </ul>
     <% end %>
   <% end %>
+  <hr>
+  <div class = "d-flex justify-content-center">
+  <%= link_to "Upload boat", new_boat_path, class: "btn btn-dark" %> </div>
+  </div>

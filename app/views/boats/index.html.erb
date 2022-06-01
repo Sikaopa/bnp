@@ -18,7 +18,7 @@
           <p class="card-text"><strong><%= boat.capacity %>
           </strong><%= boat.location %>
           <%= boat.color %> <strong><p>Owner: <%= boat.user.first_name %></p></strong>
-          <a href="#" class="btn btn-dark">Check Boat</a>
+          <%= link_to "See boat", boat_path(boat), class: "btn btn-dark"%>
         </div>
       </div>
     <% end %>
