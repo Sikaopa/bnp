@@ -55,3 +55,19 @@
 .card-product .card-product-infos {
   padding: 16px;
 }
+
+.icon i {
+  color: #FFA500;
+}
+
+.card, a {
+  color: #212529;
+  text-decoration: none;
+  opacity: 1;
+}
+
+.card, a:hover {
+  color: #212529;
+  text-decoration: none;
+  opacity: 0.9;
+}
