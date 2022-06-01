@@ -10,8 +10,13 @@
       <div class="carousel-caption d-none d-md-block">
         <h5>Party and Boats</h5>
         <p>Enjoy Amazing parties with friends and families.</p>
-      <div class="slider-btn">
-        <button class = "btn btn-1">Our Services</button>
+      <div class="slider-btn d-flex justify-content-evenly">
+        <%= link_to "Rent a Boat!", boats_path, class: "btn btn-1" %>
+        <% if current_user %>
+          <%= link_to "Become a Captain!", user_path(current_user), class: "btn btn-1" %>
+        <% else %>
+          <%= link_to "Become a Captain!", new_user_session_path, class: "btn btn-1" %>
+        <% end %>
       </div>
     </div>
       </div>
@@ -20,8 +25,13 @@
       <div class="carousel-caption d-none d-md-block">
         <h5>Party and Boats</h5>
         <p>Travel the world with our luxury boats.</p>
-        <div class="slider-btn">
-          <button class = "btn btn-1">Our Services</button>
+        <div class="slider-btn d-flex justify-content-evenly">
+          <%= link_to "Rent a Boat!", boats_path, class: "btn btn-1" %>
+          <% if current_user %>
+            <%= link_to "Become a Captain!", user_path(current_user), class: "btn btn-1" %>
+          <% else %>
+            <%= link_to "Become a Captain!", new_user_session_path, class: "btn btn-1" %>
+          <% end %>
         </div>
       </div>
     </div>
@@ -30,8 +40,13 @@
       <div class="carousel-caption d-none d-md-block">
         <h5>Party and Boats</h5>
         <p>Reward for your Success</p>
-        <div class="slider-btn">
-          <button class = "btn btn-1">Our Services</button>
+        <div class="slider-btn d-flex justify-content-evenly">
+          <%= link_to "Rent a Boat!", boats_path, class: "btn btn-1" %>
+          <% if current_user %>
+            <%= link_to "Become a Captain!", user_path(current_user), class: "btn btn-1" %>
+          <% else %>
+            <%= link_to "Become a Captain!", new_user_session_path, class: "btn btn-1" %>
+          <% end %>
       </div>
       </div>
     </div>
