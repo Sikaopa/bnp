@@ -7,7 +7,10 @@
       <p>The <%=@boat.make%> is a beautiful <strong><%=@boat.color%></strong> boat located in <strong><%=@boat.location%></strong></p>
       <p>The daily rate for this boat is only <strong>$<%=@boat.daily_rate%> per day</strong></p>    </div>
     <div class="col-12 col-lg-4">
-    <a href="#" class="btn btn-primary">Book it!</a>
+    <%= link_to new_boat_booking_path(@boat) do %>
+    <i class="btn btn-primary mt-3"></i> Book it
+  <% end %>
+
   </div>
   </div>
 </div>
