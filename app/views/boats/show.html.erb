@@ -15,7 +15,9 @@
             <h6 class="card-subtitle my-3 "><strong>Rate: $<%= @boat.daily_rate %></strong></h6>
             <p class="card-text">This boat is beautiful and good for all get away and parties</p>
             <div class = "text-center d-grid gap-2 mt-5">
-              <a href="#" class="card-link btn btn-dark btn-lg">Book</a>
+              <%= link_to new_boat_booking_path(@boat) do %>
+              <i class="btn btn-primary mt-3"></i> Book it
+              <% end %>
             </div>
           </div>
         </div>

@@ -4,7 +4,29 @@
     <h1>Hey there <%= current_user.first_name %> !</h1>
     <hr>
   </div>
-  <div class="bookings mb-2">
+
+  <% current_user.bookings.each_with_index do |booking, index| %>
+  <% if current_user.bookings[index].user == current_user %>
+    <ul class="list-unstyled">
+      <li><%= link_to current_user.bookings[index].boat.make, boat_path(booking) %></li>
+      <li><%= current_user.bookings[index].boat.location %></li>
+      <li><%= current_user.bookings[index].start_date %></li>
+      <li><%= current_user.bookings[index].end_date %></li>
+      <li><%= current_user.bookings[index].approved ? "Booking confirmed!" : "Pending..." %></li>
+      <hr>
+    </ul>
+  <% else %>
+    <p>Nothing yet...</p>
+  <% end %>
+<% end %>
+
+</div>
+<br>
+<br>
+<br>
+<% if current_user.boats.count >= 1 %>
+  <div class="boats mb-2">
+
     <div class="title mb-4">
       <h4>Your bookings</h4>
     </div>
@@ -24,24 +46,35 @@
       <p>Nothing yet...</p>
     <% end %>
   </div>
-  <br>
-  <br>
-  <br>
-  <% if current_user.boats.count >= 1 %>
-    <div class="boats mb-2">
-      <div class="title mb-4">
-        <h4>Your Boats</h4>
-      </div>
+<% end %>
+
+
+
+
+
+
+
+
+
+
+<div class="title mb-4">
+  <h4>Pending bookings</h4>
+</div>
+
+  <% current_user.boats.each_with_index do |boat, index| %>
+    <% if current_user.boats[index].bookings.count >= 1 %>
       <ul class="list-unstyled">
-        <%current_user.boats.each do |boat| %>
-        <li><%= link_to boat.make, boat_path(boat) %></li>
-        <li><%= boat.capacity %></li>
-        <li><%= boat.color %></li>
-        <li><%= boat.location %></li>
-        <li><%= boat.daily_rate %></li>
-        <hr>
+        <%current_user.boats[index].bookings.each do |booking| %>
+        <% unless booking.approved %>
+          <li><%= link_to booking.boat.make, boat_path(booking) %></li>
+          <li><%= booking.boat.location %></li>
+          <li><%= booking.start_date %></li>
+          <li><%= booking.end_date %></li>
+          <%= link_to "Accept", booking_path(booking, approved: true), data:{ turbo_method: :patch }, class: "btn btn-success" %>
+          <%= link_to "Decline", delete_booking_path(booking), class: "btn btn-danger" %>
+          <hr>
+        <% end %>
         <% end %>
       </ul>
-    </div>
+    <% end %>
   <% end %>
-</div>
