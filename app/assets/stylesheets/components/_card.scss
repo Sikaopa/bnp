@@ -1,10 +1,11 @@
 
-
 .cards {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 16px;
   margin: 0 auto;
+  border-radius: 5px;
+
 
 }
 
@@ -63,11 +64,22 @@
 .card, a {
   color: #212529;
   text-decoration: none;
-  opacity: 1;
 }
 
-.card, a:hover {
+.card a:hover {
   color: #212529;
-  text-decoration: none;
-  opacity: 0.9;
+  text-decoration:underline;
+  text-decoration-color: #FFA500;
+}
+
+.box-size{
+  height: 700px;
+}
+
+.cards .card-body {
+  background-color: #F4F4F4;
+  padding-left: 0px;
+  font-family: 'Manrope', sans-serif;
+  line-height: 10px;
+
 }
