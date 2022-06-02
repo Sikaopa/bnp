@@ -3,88 +3,127 @@
     <h1><%= current_user.first_name %>'s Dashboard</h1>
     <hr>
   </div>
-
-  <div class="title mb-4">
+  <div class="title mb-4 yellow">
     <h4>Your bookings</h4>
-    <hr>
   </div>
+  <div class="cards">
+    <% current_user.bookings.each_with_index do |booking, index| %>
+      <% if current_user.bookings[index].user == current_user %>
+        <%= link_to boat_path(booking.boat) do %>
+          <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
+            <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= booking.boat.image_url %>)">
+            </div>
+            <div class="card-body">
+              <div class="card-title">
+                <p>Make: <strong><%= current_user.bookings[index].boat.make %></strong></p>
+                <p>Start date: <strong><%= current_user.bookings[index].start_date %></strong></p>
+                <p>End date: <strong><%= current_user.bookings[index].end_date %></strong></p>
+                <p>Total price:
 
-  <% current_user.bookings.each_with_index do |booking, index| %>
-    <% if current_user.bookings[index].user == current_user %>
-      <ul class="list-unstyled">
-        <li><%= link_to current_user.bookings[index].boat.make, boat_path(booking) %></li>
-        <li><%= current_user.bookings[index].boat.location %></li>
-        <li><%= current_user.bookings[index].start_date %></li>
-        <li><%= current_user.bookings[index].end_date %></li>
-        <li><%= current_user.bookings[index].approved ? "Booking confirmed!" : "Pending..." %></li>
-        <hr>
-      </ul>
+                    <strong>£ <%= current_user.bookings[index].boat.daily_rate * (((current_user.bookings[index].end_date - current_user.bookings[index].start_date).to_i) + 1) %>
+                  </strong>
+                </p>
+                <p>Status: <strong><%= current_user.bookings[index].approved ? "Booking confirmed!" : "Pending..." %></strong></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <%end%>
     <%end%>
-  <%end%>
+  </div>
+  <hr>
+  <br>
 
-  <br>
-  <br>
-  <br>
   <% if current_user.boats.count >= 1 %>
     <div class="boats mb-2">
-    <div class="title mb-4">
+      <div class="title mb-4 yellow">
         <h4>Your Boats</h4>
-        <hr>
-    </div>
-      <ul class="list-unstyled">
+      </div>
+      <div class="cards">
         <%current_user.boats.each do |boat| %>
-        <li><%= link_to boat.make, boat_path(boat) %></li>
-        <li><%= boat.capacity %></li>
-        <li><%= boat.color %></li>
-        <li><%= boat.location %></li>
-        <li><%= boat.daily_rate %></li>
-        <hr>
+          <%= link_to boat_path(boat) do %>
+            <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
+              <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= boat.image_url %>)">
+              </div>
+              <div class="card-body">
+                <div class="card-title">
+                  <p>Make: <strong><%= boat.make %></strong></p>
+                  <p>Capacity: <strong><%= boat.capacity %></strong></p>
+                  <p>Color: <strong><%= boat.color %></strong></p>
+                  <p>Location: <strong><%= boat.location %></strong></p>
+                  <p>Daily rate: <strong>£ <%= boat.daily_rate %></strong></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
         <% end %>
-      </ul>
+      </div>
     </div>
-    <%end%>
+    <hr>
+  <%end%>
 
-    <div class="title mb-4">
+    <div class="title mb-4 yellow">
       <h4>Approved bookings</h4>
     </div>
     <% if current_user.bookings.count >= 1 %>
-      <ul class="list-unstyled">
-        <%current_user.bookings.each do |booking| %>
-        <% if booking.approved%>
-        <li><%= link_to booking.boat.make, boat_path(booking) %></li>
-        <li><%= booking.boat.location %></li>
-        <li><%= booking.start_date %></li>
-        <li><%= booking.end_date %></li>
-        <hr>
-        <%end%>
+      <div class="cards">
+        <% current_user.bookings.each do |booking| %>
+          <% if booking.approved%>
+            <%= link_to boat_path(booking.boat) do %>
+              <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
+                <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= booking.boat.image_url %>)">
+                </div>
+                <div class="card-body">
+                  <div class="card-title">
+                    <% if booking.approved%>
+                      <p>Make: <strong><%= booking.boat.make %></strong></p>
+                      <p>Location: <strong><%= booking.boat.location %></strong></p>
+                      <p>Start date: <strong><%= booking.start_date %></strong></p>
+                      <p>End date: <strong><%= booking.end_date %></strong></p>
+                      <p>Your earnings: <strong>£ <%= booking.boat.daily_rate * (((booking.end_date - booking.start_date).to_i) + 1) %></strong></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
         <% end %>
-      </ul>
-      <hr>
-    <% else %>
-      <p>Nothing yet...</p>
+      </div>
     <% end %>
+    <hr>
 
-  <div class="title mb-4">
+  <div class="title mb-4 yellow">
     <h4>Pending bookings</h4>
   </div>
 
-  <% current_user.boats.each_with_index do |boat, index| %>
-    <% if current_user.boats[index].bookings.count >= 1 %>
-      <ul class="list-unstyled">
-        <%current_user.boats[index].bookings.each do |booking| %>
-        <% unless booking.approved %>
-          <li><%= link_to booking.boat.make, boat_path(booking) %></li>
-          <li><%= booking.boat.location %></li>
-          <li><%= booking.start_date %></li>
-          <li><%= booking.end_date %></li>
-          <%= link_to "Accept", boat_booking_path(booking, approved: true), data:{ turbo_method: :patch }, class: "btn btn-success" %>
-          <%= link_to "Decline", boat_delete_booking_path(booking), class: "btn btn-danger" %>
-          <hr>
-        <% end %>
-        <% end %>
-      </ul>
+  <div class="cards">
+    <% current_user.boats.each_with_index do |boat, index| %>
+      <% if current_user.boats[index].bookings.count >= 1 %>
+          <% current_user.boats[index].bookings.each do |booking| %>
+            <% unless booking.approved %>
+              <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
+                <%= link_to boat_path(booking.boat) do %>
+                <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= booking.boat.image_url %>)">
+                </div>
+                <% end %>
+                <div class="card-body">
+                  <div class="card-title">
+                      <p>Make: <strong><%= booking.boat.make %></strong></p>
+                      <p>Location: <strong><%= booking.boat.location %></strong></p>
+                      <p>Start date: <strong><%= booking.start_date %></strong></p>
+                      <p>End date: <strong><%= booking.end_date %></strong></p>
+                      <p>Customer: <strong><%= booking.user.first_name %></strong></p>
+                      <p>Your earnings: <strong>£ <%= booking.boat.daily_rate * (((booking.end_date - booking.start_date).to_i) + 1) %></strong></p>
+                      <%= link_to "Accept", boat_booking_path(booking, approved: true), data:{ turbo_method: :patch }, class: "btn btn-success text-decoration-none" %>
+                      <%= link_to "Decline", boat_delete_booking_path(booking), class: "btn btn-danger text-decoration-none" %>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
   <hr>
   <div class = "d-flex justify-content-center">
   <%= link_to "Upload boat", new_boat_path, class: "btn btn-dark" %> </div>
