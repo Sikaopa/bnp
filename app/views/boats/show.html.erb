@@ -60,7 +60,13 @@
           <h5><strong>$<%= @boat.daily_rate %></strong>/day</h5>
           </div>
           <div class = "text-center d-grid gap-2 mt-3">
+             <%if current_user != @boat.user%>
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Proceed to book</button>
+            <% end %>
+            <%if current_user == @boat.user%>
+              <%= link_to "Edit listing", edit_boat_path(@boat), class: 'btn btn-light btn-sm border'%>
+              <%= link_to "Delete Boat", boat_path(@boat), class: 'btn btn-light btn-sm border', data: {turbo_method: :delete, turbo_confirm: "Delete #{@boat.make}?"}%>
+              <%end%>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog ">
                 <div class="modal-content" style="border-radius: 10px; width:400px; background-color: #F4F4F4">

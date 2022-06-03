@@ -1,4 +1,9 @@
 require 'faker'
+
+User.delete_all
+Boat.delete_all
+Booking.delete_all
+
 10.times do
   User.create(
     email: Faker::Internet.email,

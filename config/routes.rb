@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   root to: "pages#home"
-  resources :boats, only: [:index,:new, :create, :show] do
+  resources :boats do
     resources :bookings, only:[:new,:create, :update]
     get '/booking/:id', to: 'bookings#destroy', as: :delete_booking
   end

@@ -19,10 +19,10 @@
         <div class="card-body">
           <div class="card-title">
             <p><strong>Make:</strong> <%= boat.make %></p>
-            <p class="card-text">Capacity: <%= boat.capacity %></p>
-            <p>Amount: $<%= boat.daily_rate %></p>
-            <%# <a class="card-text stretched-link" href="#"><strong>$<%= boat.daily_rate</strong></a>  %>
-            <p>Location: <%= link_to boat.location, boat_path(boat), class: "stretched-link"%></p>
+            <p class="card-text">Capacity: <%= boat.capacity %>
+            <p>Location: <%= boat.location %> City</p>
+            <a class="card-text stretched-link" href="">Daily rate: <strong>$<%= boat.daily_rate %></strong></a>
+            <ul><i><%= link_to "See boat", boat_path(boat.id), class: 'btn btn-dark btn-sm border my-2'%></i></ul>
           </div>
         </div>
       </div>
