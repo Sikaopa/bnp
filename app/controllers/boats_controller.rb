@@ -41,6 +41,11 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
     @boat.update(boat_params)
     redirect_to boat_path(@boat)
+    # if
+    #  else
+    #    render :edit, status: :unprocessable_entity
+
+    #   end
   end
 
   def destroy
@@ -49,6 +54,8 @@ class BoatsController < ApplicationController
     redirect_to boats_path, status: :see_other
   end
 
+  def will_save_change_to_address?
+  end
 
   private
 
