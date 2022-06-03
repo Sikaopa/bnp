@@ -21,7 +21,6 @@ class BookingsController < ApplicationController
   end
 
   def create
-
     booking = Booking.new(booking_params)
     booking.boat = Boat.find(params[:boat_id])
     booking.user = current_user
