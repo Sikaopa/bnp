@@ -1,87 +1,110 @@
 <div class="container">
-  <div class = "d-flex py-5 justify-content-around align-content-center">
-    <div class="cards ">
-      <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
-        <div class="card-category" style="height: 22rem; width: 52rem; background-image:url(<%= @boat.image_url %>)">
-        </div>
-        <div class="card-body" >
-          <div class="card-title" style="width: 42rem; line-height: 20px">
-            <div class = "d-flex">
-              <div class="icon mb-3">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                </div>
-                <div>
-                  <p class = "show-icon"><i class="fa-solid fa-sailboat ml-4" style="color:green">Top Value</i></p>
-                </div>
+  <div>
+    <div class = "d-flex py-5 justify-content-around align-content-center">
+      <div class="cards ">
+        <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
+          <div class="card-category" style="height: 22rem; width: 52rem; background-image:url(<%= @boat.image_url %>)">
+          </div>
+          <div class="card-body" >
+            <div class="card-title" style="width: 42rem; line-height: 20px">
+              <div class = "d-flex">
+                <div class="icon mb-3">
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  <i class="fa-solid fa-star"></i>
+                  </div>
+                  <div>
+                    <p class = "show-icon"><i class="fa-solid fa-sailboat ml-4" style="color:green">Top Value</i></p>
+                  </div>
+              </div>
+              <div class= "show-text mt-4">
+                <h6>Description</h6>
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tempora molestiae repellat exercitationem. Cupiditate commodi ad itaque rerum sequi ex laborum rem. Suscipit provident et obcaecati quasi illum quis sed.</p>
+              </div>
             </div>
-            <div class= "show-text mt-4">
-              <h6>Description</h6>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Optio tempora molestiae repellat exercitationem. Cupiditate commodi ad itaque rerum sequi ex laborum rem. Suscipit provident et obcaecati quasi illum quis sed.</p>
+          </div>
+        </div>
+      </div>
+      <div class="card card-show" style="width: 36rem; height: 22rem;">
+        <div class="card-body">
+          <h5 class="card-title border-bottom pb-3"><strong>Booking details</strong></h5>
+          <div class= "border-bottom">
+            <div class= "d-flex justify-content-between mb-3">
+              <h6>Color :</h6>
+              <div>
+                <h6><%= @boat.color %></h6>
+              </div>
+            </div>
+            <div class= "d-flex justify-content-between mb-3">
+              <h6>Capacity :</h6>
+              <div>
+                <h6><%= @boat.capacity %></h6>
+              </div>
+            </div>
+            <div class= "d-flex justify-content-between mb-3">
+              <h6>Location :</h6>
+              <div>
+                <h6><%= @boat.location %></h6>
+              </div>
+            </div>
+            <div class= "d-flex justify-content-between mb-3">
+              <h6>Make :</h6>
+              <div>
+                <h6><%= @boat.make %></h6>
+              </div>
+            </div>
+          </div>
+          <div class = "text-center mt-3">
+          <h5><strong>$<%= @boat.daily_rate %></strong>/day</h5>
+          </div>
+          <div class = "text-center d-grid gap-2 mt-3">
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Proceed to book</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog ">
+                <div class="modal-content" style="border-radius: 10px; width:400px; background-color: #F4F4F4">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><strong>Guest</strong></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <%= simple_form_for([@boat, @booking]) do |f| %>
+                    <%= f.input :start_date, html5: true %>
+                    <%= f.input :end_date, html5: true %>
+                    <div class="modal-footer d-flex justify-content-between">
+                      <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                      <%= f.submit class: 'btn btn-dark' %>
+                    </div>
+                    <% end %>
+                  </div>
+                  </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card card-show" style="width: 36rem; height: 22rem;">
-      <div class="card-body">
-        <h5 class="card-title border-bottom pb-3"><strong>Booking details</strong></h5>
-        <div class= "border-bottom">
-          <div class= "d-flex justify-content-between mb-3">
-            <h6>Color :</h6>
-            <div>
-              <h6><%= @boat.color %></h6>
-            </div>
-          </div>
-          <div class= "d-flex justify-content-between mb-3">
-            <h6>Capacity :</h6>
-            <div>
-              <h6><%= @boat.capacity %></h6>
-            </div>
-          </div>
-          <div class= "d-flex justify-content-between mb-3">
-            <h6>Location :</h6>
-            <div>
-              <h6><%= @boat.location %></h6>
-            </div>
-          </div>
-          <div class= "d-flex justify-content-between mb-3">
-            <h6>Make :</h6>
-            <div>
-              <h6><%= @boat.make %></h6>
-            </div>
-          </div>
+    <div class="row">
+    <div class="col-12 mx-auto text-center">
+    <h5><strong>Customers who viewed this also viewed</strong></h5>
+    <div class="cards pt-3">
+    <% @boats.each do |boat| %>
+      <div class="card card-show-footer border-0 mx-auto rounded mb-4" style="width: 18rem;">
+        <div class="card-category" style="height: 16rem; background-image:url(<%= boat.image_url %>)">
         </div>
-        <div class = "text-center mt-3">
-        <h5><strong>$<%= @boat.daily_rate %></strong>/day</h5>
-        </div>
-        <div class = "text-center d-grid gap-2 mt-3">
-          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Proceed to book</button>
-          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog ">
-              <div class="modal-content" style="border-radius: 10px; width:400px; background-color: #F4F4F4">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel"><strong>Guest</strong></h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                  <%= simple_form_for([@boat, @booking]) do |f| %>
-                  <%= f.input :start_date, html5: true %>
-                  <%= f.input :end_date, html5: true %>
-                  <div class="modal-footer d-flex justify-content-between">
-                    <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                    <%= f.submit class: 'btn btn-dark' %>
-                  </div>
-                  <% end %>
-                </div>
-                </div>
-            </div>
+        <div class="card-body">
+          <div class="card-title text-start">
+            <p><strong>Make:</strong> <%= boat.make %></p>
+            <p class="card-text">Capacity: <%= boat.capacity %></p>
+            <p>Amount: $<%= boat.daily_rate %></p>
+            <p>Location: <%= link_to boat.location, boat_path(boat), class: "stretched-link" %></p>
           </div>
         </div>
       </div>
+    <% end %>
+    </div>
+    </div>
     </div>
   </div>
 </div>
