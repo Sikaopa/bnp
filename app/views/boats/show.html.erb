@@ -3,7 +3,7 @@
     <div class = "d-flex py-5 justify-content-around align-content-center">
       <div class="cards ">
         <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
-          <div class="card-category" style="height: 22rem; width: 52rem; background-image:url(<%= @boat.image_url %>)">
+          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url(<%= @boat.image_url %>)">
           </div>
           <div class="card-body" >
             <div class="card-title" style="width: 42rem; line-height: 20px">
@@ -27,7 +27,7 @@
           </div>
         </div>
       </div>
-      <div class="card card-show" style="width: 36rem; height: 22rem;">
+      <div class="card card-show" style="width: 36rem; height: 24rem;">
         <div class="card-body">
           <h5 class="card-title border-bottom pb-3"><strong>Booking details</strong></h5>
           <div class= "border-bottom">
@@ -64,12 +64,12 @@
               <% if current_user %>
               <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModal"> Proceed to book</button>
               <% else %>
-              <%= link_to "Proceed to book", new_user_session_path, class: "btn btn-dark" %>
+              <%= link_to "Proceed to book", new_user_session_path, class: "btn btn-dark  text-decoration-none", style: "color:white" %>
               <% end %>
             <%end%>
             <%if current_user == @boat.user%>
-              <%= link_to "Edit listing", edit_boat_path(@boat), class: 'btn btn-dark btn-sm border'%>
-              <%= link_to "Delete Boat", boat_path(@boat), class: 'btn btn-dark btn-sm border', data: {turbo_method: :delete, turbo_confirm: "Delete #{@boat.make}?"}%>
+              <%= link_to "Edit listing", edit_boat_path(@boat), class: "btn btn-dark btn-sm text-decoration-none", style: "color:white"%>
+              <%= link_to "Delete Boat", boat_path(@boat), class: "btn btn-dark btn-sm text-decoration-none", style: "color:white", data: {turbo_method: :delete, turbo_confirm: "Delete #{@boat.make}?"}%>
             <%end%>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
               <div class="modal-dialog ">
