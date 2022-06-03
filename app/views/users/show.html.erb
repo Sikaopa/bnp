@@ -68,20 +68,18 @@
     <% if current_user.bookings.count >= 1 %>
       <div class="cards">
         <% current_user.bookings.each do |booking| %>
-          <% if booking.approved%>
+          <% if booking.approved %>
             <%= link_to boat_path(booking.boat) do %>
               <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
                 <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= booking.boat.image_url %>)">
                 </div>
                 <div class="card-body">
                   <div class="card-title">
-                    <% if booking.approved%>
                       <p>Make: <strong><%= booking.boat.make %></strong></p>
                       <p>Location: <strong><%= booking.boat.location %></strong></p>
                       <p>Start date: <strong><%= booking.start_date %></strong></p>
                       <p>End date: <strong><%= booking.end_date %></strong></p>
                       <p>Your earnings: <strong>£ <%= booking.boat.daily_rate * (((booking.end_date - booking.start_date).to_i) + 1) %></strong></p>
-                    <% end %>
                   </div>
                 </div>
               </div>

@@ -12,6 +12,11 @@ class BoatsController < ApplicationController
     @boat = Boat.find(params[:id])
     @booking = Booking.new
     @boats = Boat.all.sample(4)
+    @markers =
+      {
+        lat: @boat.geocode[0],
+        lng: @boat.geocode[1]
+      }
   end
 
   def new

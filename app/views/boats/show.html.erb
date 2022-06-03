@@ -27,6 +27,12 @@
           </div>
         </div>
       </div>
+
+      <div>
+
+      </div>
+
+
       <div class="card card-show" style="width: 36rem; height: 22rem;">
         <div class="card-body">
           <h5 class="card-title border-bottom pb-3"><strong>Booking details</strong></h5>
@@ -94,7 +100,17 @@
           </div>
         </div>
       </div>
+      </div>
+        <div class="card card-show" style="width: 100%; height: 22rem;">
+                <div style="width: 100%; height: 600px;"
+          data-controller="map"
+          data-map-markers-value="<%= @markers.to_json %>"
+          data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>">
+        </div>
     </div>
+    <br>
+    <br>
+    <br>
     <div class="row">
     <div class="col-12 mx-auto text-center">
     <h5><strong>Customers who viewed this also viewed</strong></h5>
