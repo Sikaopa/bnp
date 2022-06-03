@@ -10,6 +10,8 @@ class BoatsController < ApplicationController
 
   def show
     @boat = Boat.find(params[:id])
+    @booking = Booking.new
+    @boats = Boat.all.sample(4)
   end
 
   def new
