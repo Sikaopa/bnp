@@ -116,18 +116,5 @@
     </div>
     </div>
     </div>
-    <div class = "review part">
-    <h2><%= pluralize @boat.reviews.size, "review" %></h2>
-
-    <div>
-      <% if @boat.reviews.blank? %>
-        Be the first to leave a review for <%= @boat.make %>
-      <% else %>
-        <% @boat.reviews.each do |review| %>
-          <p><%= review.content %></p>
-        <% end %>
-      <% end %>
-    </div>
-    </div>
   </div>
 </div>

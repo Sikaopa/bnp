@@ -4,5 +4,8 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
+import HelloController from "./hello_controller.js"
 application.register("hello", HelloController)
+
+import InsertInListController from "./insert_in_list_controller.js"
+application.register("insert-in-list", InsertInListController)
