@@ -1,0 +1,30 @@
+
+ul li{
+  display: inline-block;
+  margin: 0 10px;
+  margin-left: 0;
+}
+
+ul{
+  padding-left: 0;
+}
+
+.show-icon{
+  padding-left: 8px;
+  font-size: smaller;
+}
+
+.show-text h6{
+  border-bottom: 5px solid #FFA500;
+  width: 85px;
+  padding-top: 18px;
+}
+
+.show-text p {
+  line-height: 2rem;
+}
+
+.card-show{
+  box-shadow: 0 10px 6px rgba(0,0,0,0.08);
+  border-radius: 8px;
+}
