@@ -14,15 +14,14 @@
   <div class="cards">
     <% @boats.each do |boat| %>
       <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
-        <div class="card-category" style="height: 16rem; background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),  url(<%= boat.image_url %>)">
+        <div class="card-category" style="height: 16rem; background-image:url(<%= boat.image_url %>)">
         </div>
         <div class="card-body">
           <div class="card-title">
             <p><strong>Make:</strong> <%= boat.make %></p>
-            <p class="card-text">Capacity: <%= boat.capacity %>
-            <p>Location: <%= boat.location %> City</p>
-            <a class="card-text stretched-link" href="">Daily rate: <strong>$<%= boat.daily_rate %></strong></a>
-            <ul><i><%= link_to "See boat", boat_path(boat.id), class: 'btn btn-dark btn-sm border my-2'%></i></ul>
+            <p class="card-text">Capacity: <%= boat.capacity %></p>
+            <p>Amount: £<%= boat.daily_rate %></p>
+            <p>Location: <%= link_to boat.location, boat_path(boat), class: "stretched-link"%></p>
           </div>
         </div>
       </div>
