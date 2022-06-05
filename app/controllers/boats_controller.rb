@@ -11,12 +11,13 @@ class BoatsController < ApplicationController
   def show
     @boat = Boat.find(params[:id])
     @booking = Booking.new
-    @boats = Boat.all.sample(4)
     @markers =
       {
         lat: @boat.geocode[0],
         lng: @boat.geocode[1]
       }
+    @boats = Boat.all.sample(4)
+    @review = Review.new
   end
 
   def new

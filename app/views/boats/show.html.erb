@@ -1,5 +1,5 @@
 <div class="container">
-  <div>
+  <div data-controller="insert-in-list" data-insert-in-list-position-value="beforeend">
     <div class = "d-flex py-5 justify-content-around align-content-center">
       <div class="cards ">
         <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
@@ -127,6 +127,25 @@
     <% end %>
     </div>
     </div>
+    </div>
+    <hr> <br>
+    <h1><%= @boat.make %> <small><%= @boat.location %></small></h1>
+    <h2><%= pluralize @boat.reviews.size, "review" %></h2>
+    <%= render 'reviews/form', boat: @boat, review: @review %> <br>
+    <div data-insert-in-list-target="items">
+      <% if @boat.reviews.blank? %>
+        Be the first to leave a review for <%= @boat.make %>
+      <% else %>
+      <div class="row">
+        <% @boat.reviews.each do |review| %>
+          <div class="col-6">
+          <i class="fa-solid fa-user"></i>
+            <p><%= review.content %></p>
+             <br>
+          </div>
+        <% end %>
+      </div>
+      <% end %>
     </div>
   </div>
 </div>
