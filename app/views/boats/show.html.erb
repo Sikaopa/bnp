@@ -3,7 +3,8 @@
     <div class = "d-flex py-5 justify-content-around align-content-center">
       <div class="cards ">
         <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
-          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url(<%= @boat.image_url %>)">
+          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url(<%= cl_image_path @boat.photo.key || @boat.image_url %>)">
+          <% raise %>
           </div>
           <div class="card-body" >
             <div class="card-title" style="width: 42rem; line-height: 20px">
@@ -131,7 +132,9 @@
     <hr> <br>
     <h1><%= @boat.make %> <small><%= @boat.location %></small></h1>
     <h2><%= pluralize @boat.reviews.size, "review" %></h2>
-    <%= render 'reviews/form', boat: @boat, review: @review %> <br>
+    <% if current_user %>
+      <%= render 'reviews/form', boat: @boat, review: @review %> <br>
+    <% end %>
     <div data-insert-in-list-target="items">
       <% if @boat.reviews.blank? %>
         Be the first to leave a review for <%= @boat.make %>
@@ -139,7 +142,12 @@
       <div class="row">
         <% @boat.reviews.each do |review| %>
           <div class="col-6">
-          <i class="fa-solid fa-user"></i>
+          <div class = "d-flex">
+            <i class="fa-solid fa-user"></i>
+            <div class = "pl-4">
+            <%# <p><%= current_user.first_name %>
+            </div>
+          </div>
             <p><%= review.content %></p>
              <br>
           </div>
