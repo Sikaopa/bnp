@@ -3,8 +3,11 @@
     <div class = "d-flex py-5 justify-content-around align-content-center">
       <div class="cards ">
         <div class="card border-0 mx-auto rounded mb-4" style="width: 18rem;">
-          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url(<%= cl_image_path @boat.photo.key || @boat.image_url %>)">
-          <% raise %>
+        <% if @boat.photo.key.nil? %>
+          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url(<%=@boat.image_url %>)">
+        <% else %>
+          <div class="card-category" style="height: 24rem; width: 52rem; background-image:url('<%=cl_image_tag @boat.photo.key , height: 300, crop: :fill  %>">
+        <% end %>
           </div>
           <div class="card-body" >
             <div class="card-title" style="width: 42rem; line-height: 20px">
